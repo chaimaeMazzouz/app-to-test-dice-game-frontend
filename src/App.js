@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Hold from "./Components/Controllers/Hold";
+import StartForm from "./Components/StartPage/StartForm";
 class App extends Component {
   render() {
     return (
       <div>
-        <Hold />
+        <StartForm />
       </div>
     );
   }
