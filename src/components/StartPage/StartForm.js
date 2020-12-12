@@ -3,49 +3,65 @@ import "./StartForm.css";
 
 class StartForm extends Component {
   onSwitchClick() {
-    var checkBox = document.getElementById("myCheck");
-    var button1 = document.getElementById("btn1");
-    var button2 = document.getElementById("btn2");
-    var button3 = document.getElementById("btn3");
-    if (checkBox.checked == true) {
-      button3.style.display = "none";
-      button1.style.display = "block";
-      button2.style.display = "block";
-      document.getElementById("label-check").style.color = "#1e9feb";
-      document.getElementById("label-check").innerHTML = "Online";
-    } else {
-      button3.style.display = "block";
-      button1.style.display = "none";
-      button2.style.display = "none";
-      document.getElementById("label-check").style.color = "#cccccc";
-      document.getElementById("label-check").innerHTML = "Offline";
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("flip-card-btn-turn-to-back").style.visibility =
+        "visible";
+      document.getElementById("flip-card-btn-turn-to-front").style.visibility =
+        "visible";
+
+      document.getElementById(
+        "flip-card-btn-turn-to-back"
+      ).onclick = function () {
+        document.getElementById("flip-card").classList.toggle("do-flip");
+      };
+
+      document.getElementById(
+        "flip-card-btn-turn-to-front"
+      ).onclick = function () {
+        document.getElementById("flip-card").classList.toggle("do-flip");
+      };
+    });
   }
   render() {
     return (
-      <div>
-        <header>
-          <h1>
-            <span>DICE</span>
-            <span>GAME</span>
-          </h1>
-          <span id="label-check"></span>
-          <label className="switch">
-            <input type="checkbox" id="myCheck" onClick={this.onSwitchClick} />
-            <div className="slider" />
-          </label>
-        </header>
-        <section>
-          <a className="button" id="btn1">
-            New Game
-          </a>
-          <a className="button" id="btn2">
-            Join Game
-          </a>
-          <a className="button" id="btn3">
-            Go Offline
-          </a>
-        </section>
+      <div className="flip-card-3D-wrapper">
+        <div id="flip-card">
+          <div className="flip-card-front">
+            <header className="header">
+              <h1 className="title">
+                <span>DICE</span>
+                <span>GAME</span>
+              </h1>
+            </header>
+            <div className="buttons">
+              <a className="button btn1"> New Game </a>
+              <a className="button btn2"> Join Game </a>
+            </div>
+            <button
+              id="flip-card-btn-turn-to-back"
+              onClick={this.onSwitchClick}
+            >
+              Offline
+            </button>
+          </div>
+          <div className="flip-card-back">
+            <header className="header">
+              <h1 className="title">
+                <span>DICE</span>
+                <span>GAME</span>
+              </h1>
+            </header>
+            <div className="buttons">
+              <a className="button btn3"> Play </a>
+            </div>
+            <button
+              id="flip-card-btn-turn-to-front"
+              onClick={this.onSwitchClick}
+            >
+              Online
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
